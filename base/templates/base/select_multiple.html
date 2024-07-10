@@ -1,0 +1,57 @@
+<div>
+  <strong>Select Ingredients:</strong>
+  <select id="multiple-checkboxes" name="ingredients" multiple="multiple">
+    {% for ingredient in ingredients %}
+    <option value="{{ ingredient }}">{{ ingredient }}</option>
+
+    {% endfor %}
+  </select>
+  <div id="ingredient-inputs"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+/>
+<script
+  type="text/javascript"
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"
+></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"
+/>
+<script>
+  $(document).ready(function () {
+    $("#multiple-checkboxes").multiselect({
+      includeSelectAllOption: true,
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $("#multiple-checkboxes").change(function () {
+      $("#ingredient-inputs").empty(); // Clear existing inputs
+
+      const selectedOptions = $(this).find(":selected"); // Get selected options
+
+      selectedOptions.each(function () {
+        const ingredientName = $(this).val();
+        console.log(ingredientName);
+        const label = $("<label>").text(`${ingredientName}: `);
+        const input = $("<input>").attr({
+          type: "number",
+          name: ingredientName,
+          required: true,
+        });
+        const p = $("<p>").append(label, input, "<br>");
+
+        $("#ingredient-inputs").append(p);
+      });
+    });
+  });
+</script>
