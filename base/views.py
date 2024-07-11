@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Item, Ingridient, IngridientPerItem
-from .forms import ItemForm, IngredientForm, OrderForm
+from .models import Item, Ingridient, IngridientPerItem, Order, InventoryOrder
+from .forms import ItemForm, IngredientForm
+from django.contrib import messages
 # Create your views here.
 
 # Home page
@@ -54,9 +55,45 @@ def add_ingredient(req):
     return render(req, 'base/add_ingredients.html', context)
 
 
-def place_order(req):
-    form = OrderForm()
+def process_order(req):
+    items = Item.objects.all()
     if req.method == 'POST':
-        print(req.POST)
-    context = {'form': form}
+        try:
+            item = Item.objects.get(code=req.POST.get('code'))
+            quantity = int(req.POST.get('quantity'))
+            price = item.price
+            order = Order.objects.create(
+                item=item,
+                quantites=quantity,
+                bill=(quantity * price),
+                status=True
+            )
+            return redirect('view-orders')
+        except:
+            messages.error(req, "Item code doesn't exit")
+
+    context = {'items': items}
     return render(req, 'base/place_order.html', context)
+
+
+def view_orders(req):
+    orders = Order.objects.all().order_by('-ordered_start_time')
+    context = {'orders': orders}
+    print(orders)
+    return render(req, 'base/view_orders.html', context)
+
+
+# inventory
+def add_inventory_order(req):
+    ingredients = Ingridient.objects.all()
+    if req.method == 'POST':
+        order = InventoryOrder.objects.create(
+            interval=req.POST.get('interval')
+        )
+        ingredients = req.POST.getlist('ingredients')
+        for name in ingredients:
+            ingredient = Ingridient.objects.get(name=name)
+            order.ingredients.add(ingredient)
+        print(order)
+    context = {'ingredients': ingredients}
+    return render(req, 'base/add_inventory_order.html', context)

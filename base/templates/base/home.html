@@ -1,9 +1,2 @@
 {% extends 'main.html' %} {% block content %}
-<div class="container">
-  <ul>
-    <li><a href="{% url 'add-item' %}">Add new Item</a></li>
-    <li><a href="{% url 'add-ingredient' %}">Add Ingredients</a></li>
-  </ul>
-
-  {% include 'base/items.html' %} {% endblock %}
-</div>
+<div class="container">{% include 'base/items.html' %} {% endblock %}</div>

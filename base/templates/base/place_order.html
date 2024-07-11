@@ -1,6 +1,24 @@
 {% extends 'main.html' %} {% block content %}
+
+<div id="codes">
+  <ul>
+    {% for item in items %}
+    <li>{{item}} -> {{item.code}}</li>
+    {% endfor %}
+  </ul>
+</div>
+
 <form action="" method="POST">
-  {% csrf_token %} {{ form.as_p }}
+  {% csrf_token %}
+  <div>
+    <label for="code">Item Code:</label>
+    <input type="text" id="code" name="code" />
+  </div>
+  <br />
+  <div>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="1" />
+  </div>
   <button type="submit">sumbit</button>
 </form>
 {% endblock %}

@@ -19,6 +19,7 @@ class Item(models.Model):
     price = models.FloatField()
     # img = URL
     veg = models.BooleanField(default=None)
+    status = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -45,4 +46,15 @@ class Order(models.Model):
     status = models.BooleanField()
 
     def __str__(self) -> str:
-        return self.item
+        return self.item.name
+
+
+class InventoryOrder(models.Model):
+    ingredients = models.ManyToManyField(
+        Ingridient, blank=True, related_name='ingredients')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    interval = models.PositiveIntegerField(null=True)
+
+    def __str__(self):
+        return str(self.updated)

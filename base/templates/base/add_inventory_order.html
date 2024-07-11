@@ -1,0 +1,15 @@
+{% extends 'main.html' %} {% block content %}
+<div class="container text-center">
+  <h2>Inventory order details</h2>
+  <form action="" method="POST">
+    {% csrf_token %} {% include 'base/select_multiple_inventory.html' %}
+    <br />
+    <div>
+      <label for="interval">Time Interval to order</label>
+      <input type="number" name="interval" id="interval" />
+    </div>
+    <br />
+    <button type="submit">submit</button>
+  </form>
+</div>
+{% endblock %}
