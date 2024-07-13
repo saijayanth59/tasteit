@@ -21,10 +21,26 @@
             >Add ingredient</a
           >
         </li>
-        <li>
-          <a href="{% url 'process-order' %}" class="nav-link px-2 link-dark"
-            >Process Order</a
+        <li class="nav-item dropdown">
+          <span
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
+            Process Order
+          </span>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'item-order' %}">Item</a>
+            <a class="dropdown-item" href="{% url 'ingredient-order' %}"
+              >Ingredient</a
+            >
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'view-inventory-orders' %}"
+              >Inventory</a
+            >
+          </div>
         </li>
         <li>
           <a href="{% url 'view-orders' %}" class="nav-link px-2 link-dark"
@@ -64,7 +80,7 @@
             class="rounded-circle"
           />
         </a>
-        <ul class="dropdown-menu text-small" style="">
+        <ul class="dropdown-menu text-small">
           <li><a class="dropdown-item" href="#">New project...</a></li>
           <li><a class="dropdown-item" href="#">Settings</a></li>
           <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -75,3 +91,14 @@
     </div>
   </div>
 </header>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+  integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+  crossorigin="anonymous"
+></script>

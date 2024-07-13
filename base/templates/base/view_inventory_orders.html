@@ -1,0 +1,13 @@
+{% extends 'main.html' %} {% block content %}
+
+<div class="container">
+  <ul>
+    {% for inventory in inventories %}
+    <a href="{% url 'inventory-order' inventory.id %}"
+      ><li>{{inventory}}</li></a
+    >
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

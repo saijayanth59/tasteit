@@ -7,8 +7,7 @@
     <thead>
       <tr>
         <th scope="col">Ordered Date</th>
-        <th scope="col">Code</th>
-        <th scope="col">Item</th>
+        <th scope="col">Item type</th>
         <th scope="col">Quantity</th>
         <th scope="col">Bill</th>
         <th scope="col">Status</th>
@@ -19,8 +18,7 @@
 
       <tr>
         <td>{{order.ordered_start_time}}</td>
-        <td>{{order.item.code}}</td>
-        <td>{{order.item}}</td>
+        <td>{{order.order_type}}</td>
         <td>{{order.quantites}}</td>
         <td>{{order.bill}}</td>
         {% if order.status %}

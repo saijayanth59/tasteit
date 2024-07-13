@@ -3,8 +3,10 @@ from django.db import models
 
 class Ingridient(models.Model):
     name = models.CharField(max_length=30)
-    price = models.FloatField()
-    quantity = models.PositiveIntegerField()  # current storage of ingrident
+    price = models.FloatField(null=True)
+    quantity = models.PositiveIntegerField(
+        default=0)  # current storage of ingrident
+    # capacity = models.PositiveIntegerField(default=20)
 
     class Meta:
         ordering = ('quantity', )
@@ -38,7 +40,10 @@ class IngridientPerItem(models.Model):
 
 class Order(models.Model):
     # Need to think of on_delete
+    order_type = models.CharField(max_length=10, default='item')
     item = models.ForeignKey(Item, on_delete=models.CASCADE,  null=True)
+    ingredient = models.ForeignKey(
+        Ingridient, on_delete=models.CASCADE, null=True)
     quantites = models.PositiveIntegerField()  # how many there are willing to buy
     bill = models.FloatField()
     ordered_start_time = models.DateTimeField(auto_now_add=True)
