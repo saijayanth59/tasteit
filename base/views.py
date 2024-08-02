@@ -116,7 +116,7 @@ def inventory_order(req, pk):
     if req.method == 'POST':
         print(req.POST)
     context = {'order': order, 'ingredients': ingredient_order}
-    return render(req, 'base/inventory-order.html', context)
+    return render(req, 'base/inventory_order.html', context)
 
 
 def view_orders(req):

@@ -1,6 +1,15 @@
-{% extends 'main.html' %}
-{% block content %}
-<div class="container">
-    
+{% extends 'main.html' %} {% block content %}
+<div class="container text-center">
+  <h2>Inventory Order Details</h2>
+  <form action="{% url 'inventory-order' order.id %}" method="post">
+    <div class="row">
+      <div class="col">
+        <span>I am Ingredient</span>
+      </div>
+      <div class="col">
+        <span>I am Ingredient</span>
+      </div>
+    </div>
+  </form>
 </div>
 {% endblock %}
