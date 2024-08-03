@@ -2,7 +2,10 @@
 
 <ul>
   {% for ingredient in ingredients%}
-  <li>{{ingredient | upper}} <small>{{ ingredient.price}}</small></li>
+  <li>
+    {{ingredient | upper}}
+    <small>{{ ingredient.price}} {{ ingredient.quantity }}</small>
+  </li>
   {% endfor %}
 </ul>
 

@@ -114,8 +114,18 @@ def inventory_order(req, pk):
     order = InventoryOrder.objects.get(id=pk)
     ingredients = order.ingredients.all()
     if req.method == 'POST':
+        entries = req.POST.getlist('ingredients')
+        total = 0
         print(req.POST)
-    context = {'order': order, 'ingredients': ingredient_order}
+        for entry in entries:
+            ingredient = Ingridient.objects.get(name=entry)
+            ingredient.price = int(req.POST.get(entry + '-price'))
+            total += ingredient.price * int(req.POST.get(entry + '-quantity'))
+            ingredient.quantity += int(req.POST.get(entry + '-quantity'))
+            ingredient.save()
+        order = Order.objects.create(
+            order_type='inv-order', quantites=len(entries), bill=total, status=True)
+    context = {'order': order, 'ingredients': ingredients}
     return render(req, 'base/inventory_order.html', context)
 
 

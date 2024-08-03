@@ -2,14 +2,11 @@
 <div class="container text-center">
   <h2>Inventory Order Details</h2>
   <form action="{% url 'inventory-order' order.id %}" method="post">
+    {% csrf_token %}
     <div class="row">
-      <div class="col">
-        <span>I am Ingredient</span>
-      </div>
-      <div class="col">
-        <span>I am Ingredient</span>
-      </div>
+      {% include 'base/select_multiple_inventory_order.html' %}
     </div>
+    <button>Submit</button>
   </form>
 </div>
 {% endblock %}

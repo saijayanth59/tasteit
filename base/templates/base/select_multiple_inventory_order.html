@@ -42,15 +42,30 @@
       selectedOptions.each(function () {
         const ingredientName = $(this).val();
         //console.log(ingredientName);
-        const label = $("<label>").text(`${ingredientName}: `);
-        const input = $("<input>").attr({
+        const h3 = $("<h3>").text(ingredientName);
+        const label1 = $("<label>").text("Quantity: ");
+        const input1 = $("<input>").attr({
           type: "number",
-          name: ingredientName,
+          name: ingredientName + "-quantity",
           required: true,
         });
-        const p = $("<p>").append(label, input, "<br>");
+        const label2 = $("<label>").text("Price: ");
+        const input2 = $("<input>").attr({
+          type: "number",
+          name: ingredientName + "-price",
+          required: true,
+        });
 
-        $("#ingredient-inputs").append(p);
+        const div = $("<div>").append(
+          h3,
+          label1,
+          input1,
+          "<br>",
+          label2,
+          input2
+        );
+
+        $("#ingredient-inputs").append(div);
       });
     });
   });

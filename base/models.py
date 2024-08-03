@@ -43,7 +43,7 @@ class Order(models.Model):
     order_type = models.CharField(max_length=10, default='item')
     item = models.ForeignKey(Item, on_delete=models.CASCADE,  null=True)
     ingredient = models.ForeignKey(
-        Ingridient, on_delete=models.CASCADE, null=True)
+        Ingridient, on_delete=models.CASCADE, null=True)  # update it to many to many field
     quantites = models.PositiveIntegerField()  # how many there are willing to buy
     bill = models.FloatField()
     ordered_start_time = models.DateTimeField(auto_now_add=True)
